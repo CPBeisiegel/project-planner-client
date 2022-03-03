@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/authContext";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Button } from "../../components/Button";
 
 export function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -72,7 +73,7 @@ export function Login() {
           pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
         />
 
-        <button type="submit" disabled={loading}>
+        <Button type="submit" disabled={loading} className="btn btn-primary">
           {loading ? (
             <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
@@ -80,7 +81,7 @@ export function Login() {
           ) : (
             "Entrar"
           )}
-        </button>
+        </Button>
 
         {error ? <ErrorAlert>{error}</ErrorAlert> : null}
       </form>

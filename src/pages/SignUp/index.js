@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { FormField } from "../../components/FormField";
 import { ErrorAlert } from "../../components/ErrorAlert";
+import { Button } from "../../components/Button";
 
 export function SignUp() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ export function SignUp() {
       setLoading(false);
       if (error.response) {
         console.log(error.response);
-        setError(error.response.data);
+        setError(error.response.data._message);
       } else {
         setError("Algo deu errado");
       }
@@ -95,7 +96,7 @@ export function SignUp() {
           pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
         />
 
-        <button type="submit" disabled={loading}>
+        <Button type="submit" disabled={loading} className="btn btn-primary">
           {loading ? (
             <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
@@ -103,7 +104,7 @@ export function SignUp() {
           ) : (
             "Cadastrar"
           )}
-        </button>
+        </Button>
 
         {error ? <ErrorAlert>{error}</ErrorAlert> : null}
       </form>
